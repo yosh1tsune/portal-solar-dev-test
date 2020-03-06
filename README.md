@@ -23,6 +23,27 @@ Leia com atenção pois a compreensão faz parte do processo, faça o máximo qu
 
 Good Luck!
 
+### Utilizando Docker
+
+Este projeto conta com um Dockerfile para facilitar sua utilização minimizando a necessidade da configuração do ambiente.
+
+<b>Caso não queira utilizar o Dockerfile, ignore esses passos e continue a partir dos Requisitos</b>
+
+Para montar a imagem execute o comando a seguir na raiz do projeto
+
+`$ docker-compose build`
+
+Para iniciar o ambiente execute o comando a seguir na raiz do projeto
+
+`$ docker-compose run web bash`
+
+Já no ambiente de testes, execute os seguinte comandos, na ordem listada para instalar o rails, o node, e iniciar o banco de dados e populá-lo com as seeds existentes
+
+`$ gem install rails:5.2`
+
+`$ yarn install`
+
+`$ bundle exec rails db:create db:migrate db:seed`
 
 ### Requisitos 
 

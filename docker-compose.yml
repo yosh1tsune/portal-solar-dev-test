@@ -1,0 +1,13 @@
+version: '3.0'
+
+services:
+  web:
+    build: .
+    volumes:
+      - .:/portal-solar-dev-test
+    links:
+      - db
+    env_file: .env
+  db:
+    image: postgres
+    env_file: .env
