@@ -1,5 +1,5 @@
 class PowerGenerator < ApplicationRecord
-  validates :name, :description, :image_url, :manufacturer, :price, :kwp, 
+  validates :name, :description, :image_url, :manufacturer, :price, :kwp,
             presence: true
   validates :height, numericality: { greater_than_or_equal_to: 0,
                                      less_than_or_equal_to: 40 }
@@ -10,13 +10,11 @@ class PowerGenerator < ApplicationRecord
   validates :weight, numericality: { greater_than_or_equal_to: 0,
                                      less_than_or_equal_to: 3000 }
 
-  enum structure_type: %i[
-    metalico
-    ceramico
-    fibrocimento
-    laje
-    solo
-    trapezoidal
-  ]
+  enum structure_type: { metalico: 0, ceramico: 1, fibrocimento: 2, laje: 3,
+                         solo: 4, trapezoidal: 5 }
 
+  def add_cubed_weight
+    self.cubed_weight = height * width * lenght * 300
+    save!
+  end
 end

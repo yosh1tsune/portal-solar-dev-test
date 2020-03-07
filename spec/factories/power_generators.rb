@@ -1,15 +1,19 @@
 FactoryBot.define do
   factory :power_generator do
     name { 'POLI HALF CELL PRIMO' }
-    description { 'Eficiência média da célula de 17%  }
+    description do
+      'Eficiência média da célula de 17%  }
                   PID Free
-                  Garantia de 10 anos para o produto e 
-                  Garantia linear de 25 anos 
-                  Sistemas comerciais ou residenciais on-grid e off-grid' }
-    image_url { "https://marketplace-img-production.s3.amazonaws.com/' \ 
-                'products/106221/large/20190806-1-1pmgplo.?1565112360" }
+                  Garantia de 10 anos para o produto e
+                  Garantia linear de 25 anos
+                  Sistemas comerciais ou residenciais on-grid e off-grid'
+    end
+    image_url do
+      "https://marketplace-img-production.s3.amazonaws.com/' \
+                'products/106221/large/20190806-1-1pmgplo.?1565112360"
+    end
     manufacturer { 'BYD' }
-    price { 20565.70 }
+    price { 20_565.70 }
     kwp { 5.36 }
     height { 0.8 }
     width { 0.25 }

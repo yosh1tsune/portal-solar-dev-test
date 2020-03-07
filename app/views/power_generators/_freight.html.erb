@@ -1,0 +1,8 @@
+<p><strong>Calculando frete para:</strong></p>
+<p><%= @address[:logradouro] %></p>
+<p><%= @address[:bairro] %></p>
+<p><%= @address[:localidade] %></p>
+<p><%= @address[:uf] %></p>
+<p>Preço do Produto: <%= number_to_currency(power_generator.price, unit: "R$ ", precision: 2, :separator => ",", :delimiter => ".") %></p></p>
+<p>Custo do Frete: <%= number_to_currency(freight.cost, unit: "R$ ", precision: 2, :separator => ",", :delimiter => ".") %></p>
+<p>Valor Total: <%= number_to_currency(@total_value, unit: "R$ ", precision: 2, :separator => ",", :delimiter => ".") %>
