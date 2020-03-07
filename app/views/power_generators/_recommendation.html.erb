@@ -1,0 +1,25 @@
+<h4>O que você procura?</h4>
+
+<%= form_with url: recommend_power_generators_path, method: 'get' do %>
+  <p>
+    <%= number_field_tag :price, nil, class: 'form-control form-control-lg', placeholder: 'Preço' %>
+  </p>
+  <p>
+    <%= number_field_tag :kwp, nil, class: 'form-control form-control-lg', placeholder: 'Carga' %>
+  </p>
+  <p>
+    <%= number_field_tag :height, nil, class: 'form-control form-control-lg', placeholder: 'Altura' %>
+  </p>
+  <p>
+    <%= number_field_tag :width, nil, class: 'form-control form-control-lg', placeholder: 'Largura' %>
+  </p>
+  <p>
+    <%= number_field_tag :lenght, nil, class: 'form-control form-control-lg', placeholder: 'Comprimento' %>
+  </p>
+  <p>
+    <%= number_field_tag :weight, nil, class: 'form-control form-control-lg', placeholder: 'Peso' %>
+  </p>
+  <p>
+    <%= submit_tag 'Mostre-me'%>
+  </p>
+<% end %>
