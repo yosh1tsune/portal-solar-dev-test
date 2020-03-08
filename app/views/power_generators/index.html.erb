@@ -4,16 +4,14 @@
     <div class="header__title">Geradores de Energia</div>
   </div>
 
-  <%= render partial: 'recommendation' %>
-
   <div class="searcher gradient">
     <div class="searcher__radio">
       <div class="form-check">
-        <input class="form-check-input" type="radio" name="searchRadio" id="simpleSearch" value="simple" checked>
+        <input class="form-check-input" type="radio" name="searchRadio" id="simpleSearch" value="simple">
         <label class="form-check-label" for="simpleSearch">Pesquisa simples</label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="radio" name="searchRadio" id="advancedSearch" value="advanced">
+        <input class="form-check-input" type="radio" name="searchRadio" id="advancedSearch" value="advanced" checked>
         <label class="form-check-label" for="advancedSearch">Pesquisa Avançada</label>
       </div>
     </div>
@@ -27,23 +25,32 @@
           <button type="submit" class="btn btn-outline-primary btn-lg">Pesquisar</button>
         </div>
       </div>
-
-      <div class="advanced-form" style="display:none;">
-        Entradas do usuário para pesquisar uma coleção de geradores de energia com base nas recomendações fornecidas e melhor custo de frete.
-      </div>
     <% end %>
+
+    <div class="advanced-form" style="display:none;">
+      <%= render partial: 'advanced-search.html' %>
+    </div>
+  </div>
+
+  <div style="display: inline-flex">
+    <p><strong>Ordenar por:</strong></p>
+    <p style="margin-left: 30px"><%= link_to 'Preço: maior para o menor', power_generators_path('order_desc') %></p>
+    <p style="margin-left: 30px"><%= link_to 'Preço: menor para o maior', power_generators_path('order_asc') %></p>
+    <p style="margin-left: 30px"><%= link_to 'Potencia: maior para o menor', power_generators_path('kwp_desc') %></p>
+    <p style="margin-left: 30px"><%= link_to 'Potencia: menor para o maior', power_generators_path('kwp_asc') %></p>
   </div>
 
   <div class="container" >
     <% if @power_generators.blank? %>
       <h3>Nenhum gerador encontrado com as caracteristicas informadas</h3>
     <% else %>
-      <% @power_generators.each do |power_generator| %>
+      <% @power_generators.each_with_index do |power_generator, n| %>
         <div class="box card power_generator-card">
           <%= image_tag power_generator.image_url, class: 'power_generator-card__img' %>
           <div class="power_generator-card__body">
             <h2><%= link_to power_generator.name.upcase, power_generator_path(power_generator) %></h2>
-            <p class="power_generator-card__price"><%= number_to_currency(power_generator.price, unit: "R$ ", precision: 2, :separator => ",", :delimiter => ".") %></p>
+            <p class="power_generator-card__price" id="price<%=n%>"><%= number_to_currency(power_generator.price, unit: "R$ ", precision: 2, :separator => ",", :delimiter => ".") %></p>
+            <p class="power_generator-card__price" id="power<%=n%>"><%= power_generator.kwp %> kWp</p>
             <p><strong>Descrição: </strong><%= power_generator.description %></p>
           </div>
         </div>
