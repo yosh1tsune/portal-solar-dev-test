@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-xfeature 'Visitor get recommendations' do
+feature 'Visitor get recommendations' do
   scenario 'successfully' do
     first_generator = create(:power_generator,
                              name: 'PRIMEIRO GERADOR',
@@ -21,7 +21,7 @@ xfeature 'Visitor get recommendations' do
     visit root_path
     choose(id: 'advancedSearch')
     fill_in 'Preço', with: 30_000
-    fill_in 'Carga', with: 50
+    fill_in 'Potencia', with: 50
     click_on 'Mostre-me'
 
     expect(page).to have_content first_generator.name
@@ -32,7 +32,16 @@ xfeature 'Visitor get recommendations' do
     expect(page).not_to have_content third_generator.description
   end
 
-  scenario 'or make secondary query if params dont match with none generator' do
+  scenario 'unsuccessfully if both params are not filled' do
+    visit root_path
+    fill_in 'Preço', with: nil
+    fill_in 'Potencia', with: nil
+    click_on 'Mostre-me'
+
+    expect(page).to have_content 'Preencha pelo menos um dos campos'
+  end
+
+  scenario 'or query by kWp if none generator match both params' do
     first_generator = create(:power_generator,
                              name: 'PRIMEIRO GERADOR',
                              description: 'Esse é o primeiro gerador',
@@ -47,13 +56,38 @@ xfeature 'Visitor get recommendations' do
                              price: 5000, kwp: 8.03)
 
     visit root_path
-    choose 'advancedSearch'
-    fill_in 'Preço', with: 4800
-    fill_in 'Carga', with: 5
+    fill_in 'Preço', with: 48_000
+    fill_in 'Potencia', with: 35
     click_on 'Mostre-me'
 
-    expect(page).not_to have_content first_generator.name
+    expect(page).to have_content first_generator.description
+    expect(page).to have_content first_generator.name
+    expect(page).to have_content second_generator.name
+    expect(page).to have_content second_generator.description
+    expect(page).not_to have_content third_generator.name
+    expect(page).not_to have_content third_generator.description
+  end
+
+  scenario 'or query price if none generator match both params and kwp = nil' do
+    first_generator = create(:power_generator,
+                             name: 'PRIMEIRO GERADOR',
+                             description: 'Esse é o primeiro gerador',
+                             price: 30_000, kwp: 50)
+    second_generator = create(:power_generator,
+                              name: 'SEGUNDO GERADOR',
+                              description: 'Esse é o segundo gerador',
+                              price: 33_000, kwp: 55)
+    third_generator = create(:power_generator,
+                             name: 'TERCEIRO GERADOR',
+                             description: 'Esse é o terceiro gerador',
+                             price: 5000, kwp: 8.03)
+
+    visit root_path
+    fill_in 'Preço', with: 10_000
+    click_on 'Mostre-me'
+
     expect(page).not_to have_content first_generator.description
+    expect(page).not_to have_content first_generator.name
     expect(page).not_to have_content second_generator.name
     expect(page).not_to have_content second_generator.description
     expect(page).to have_content third_generator.name

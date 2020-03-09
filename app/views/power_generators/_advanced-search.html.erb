@@ -1,21 +1,11 @@
+<p><strong>Pesquisa avançada: </strong></p>
+
 <%= form_tag(recommend_power_generators_path, method: "get") do %>
     <div class="advanced-form__input">
-      <%= number_field_tag :price, 'Preço', class: 'form-control form-control-lg', placeholder: 'Preço' %>
+      <%= number_field_tag :price, 'Preço', :step => 0.1, class: 'form-control form-control-lg', placeholder: 'Preço' %>
     </div>
     <div class="advanced-form__input">
-      <%= number_field_tag :kwp, 'Potencia', class: 'form-control form-control-lg', placeholder: 'Potencia' %>
-    </div>
-    <div class="advanced-form__input">
-      <%= number_field_tag :height, 'Altura', class: 'form-control form-control-lg', placeholder: 'Altura' %>
-    </div>
-    <div class="advanced-form__input">
-      <%= number_field_tag :width, 'Largura', class: 'form-control form-control-lg', placeholder: 'Largura' %>
-    </div>
-    <div class="advanced-form__input">
-      <%= number_field_tag :lenght, 'Comprimento', class: 'form-control form-control-lg', placeholder: 'Comprimento' %>
-    </div>
-    <div class="advanced-form__input">
-      <%= number_field_tag :weight, 'Peso', class: 'form-control form-control-lg', placeholder: 'Peso' %>
+      <%= number_field_tag :kwp, 'Potencia', :step => 0.1, class: 'form-control form-control-lg', placeholder: 'Potencia' %>
     </div>
     <div class="advanced-form__input">
       <%= submit_tag 'Mostre-me'%>

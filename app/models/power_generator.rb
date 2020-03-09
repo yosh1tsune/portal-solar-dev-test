@@ -1,4 +1,5 @@
 class PowerGenerator < ApplicationRecord
+  paginates_per 6
   validates :name, :description, :image_url, :manufacturer, :price, :kwp,
             presence: true
   validates :height, numericality: { greater_than_or_equal_to: 0,

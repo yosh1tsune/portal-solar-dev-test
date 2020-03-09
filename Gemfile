@@ -7,6 +7,7 @@ ruby '2.6.3'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'faraday'
 gem 'jbuilder', '~> 2.7'
+gem 'kaminari'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.12'
 gem 'rails', '~> 5.2'

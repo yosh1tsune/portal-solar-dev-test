@@ -4,14 +4,16 @@
     <div class="header__title">Geradores de Energia</div>
   </div>
 
+  <%= render partial: 'advanced-search.html' %>
+  
   <div class="searcher gradient">
     <div class="searcher__radio">
       <div class="form-check">
-        <input class="form-check-input" type="radio" name="searchRadio" id="simpleSearch" value="simple">
+        <input class="form-check-input" type="radio" name="searchRadio" id="simpleSearch" value="simple" checked>
         <label class="form-check-label" for="simpleSearch">Pesquisa simples</label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="radio" name="searchRadio" id="advancedSearch" value="advanced" checked>
+        <input class="form-check-input" type="radio" name="searchRadio" id="advancedSearch" value="advanced">
         <label class="form-check-label" for="advancedSearch">Pesquisa Avançada</label>
       </div>
     </div>
@@ -28,7 +30,6 @@
     <% end %>
 
     <div class="advanced-form" style="display:none;">
-      <%= render partial: 'advanced-search.html' %>
     </div>
   </div>
 
@@ -56,5 +57,6 @@
         </div>
       <% end %>
     <% end %>
+    <%= paginate @power_generators %>
   </div>
 </div>
