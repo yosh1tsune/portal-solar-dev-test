@@ -20,13 +20,7 @@ Já no ambiente de testes, execute os seguinte comandos, na ordem listada para i
 
 `$ yarn install`
 
-`$ rails g rspec:install`
-
 `$ bundle exec rails db:create db:migrate db:seed`
-
-Adicione a seguinte linha ao arquivo 'rails_helper'
-
-```config.include FactoryBot::Syntax::Methods```
 
 ### Gems adicionais
 
@@ -41,3 +35,5 @@ Adicione a seguinte linha ao arquivo 'rails_helper'
 ``` gem 'simplecov' ```
 
 ``` gem 'faraday' ```
+
+``` gem 'kaminari' ```
