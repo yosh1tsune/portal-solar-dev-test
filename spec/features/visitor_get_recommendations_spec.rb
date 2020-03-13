@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Visitor get recommendations' do
+feature 'Visitor get recommendations', js: true do
   scenario 'successfully' do
     first_generator = create(:power_generator,
                              name: 'PRIMEIRO GERADOR',
@@ -34,6 +34,7 @@ feature 'Visitor get recommendations' do
 
   scenario 'unsuccessfully if both params are not filled' do
     visit root_path
+    choose(id: 'advancedSearch')
     fill_in 'Preço', with: nil
     fill_in 'Potencia', with: nil
     click_on 'Mostre-me'
@@ -56,6 +57,7 @@ feature 'Visitor get recommendations' do
                              price: 5000, kwp: 8.03)
 
     visit root_path
+    choose(id: 'advancedSearch')
     fill_in 'Preço', with: 48_000
     fill_in 'Potencia', with: 35
     click_on 'Mostre-me'
@@ -83,6 +85,7 @@ feature 'Visitor get recommendations' do
                              price: 5000, kwp: 8.03)
 
     visit root_path
+    choose(id: 'advancedSearch')
     fill_in 'Preço', with: 10_000
     click_on 'Mostre-me'
 

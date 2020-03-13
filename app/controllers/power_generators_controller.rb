@@ -46,7 +46,7 @@ class PowerGeneratorsController < ApplicationController
     new_rec = Search.new(params[:price], params[:kwp])
     @power_generators = new_rec.main_query
     @power_generators = new_rec.secondary_query if @power_generators.blank?
-    @power_generators
+    @power_generators = @power_generators.page params[:page]
     render :index
   end
 end
